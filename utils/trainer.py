@@ -19,17 +19,25 @@ class Trainer:
         self.early_stopping_precision = 5
 
     def train(self, train_dataloader, val_dataloader):
+        my_count = 0
         for epoch in range(self.epochs):
+            my_count = my_count + 1
             self._epoch_train(train_dataloader)
             self._epoch_eval(val_dataloader)
-            print(
-                "Epoch: {}/{}, Train Loss={}, Val Loss={}".format(
-                    epoch + 1,
-                    self.epochs,
-                    np.round(self.loss["train"][-1], 10),
-                    np.round(self.loss["val"][-1], 10),
+            print("---------------")
+            print("count: " + str(my_count))
+            print("train length: " + str(len(self.loss["train"])))
+            print("val length: " + str(len(self.loss["val"])))
+
+            if len(self.loss["val"]) > 0 and len(self.loss["train"] > 0):
+                print(
+                    "Epoch: {}/{}, Train Loss={}, Val Loss={}".format(
+                        epoch + 1,
+                        self.epochs,
+                        np.round(self.loss["train"][-1], 10),
+                        np.round(self.loss["val"][-1], 10),
+                    )
                 )
-            )
 
             # reducing LR if no improvement
             if self.scheduler is not None:
