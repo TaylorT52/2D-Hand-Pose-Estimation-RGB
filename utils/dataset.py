@@ -27,14 +27,14 @@ class FreiHAND(Dataset):
 
     def __init__(self, config, set_type="train"):
         self.device = config["device"]
-        self.image_dir = os.path.join("/Users/tony/taylor-training/2D-Hand-Pose-Estimation-RGB", config["data_dir"], "evaluation/rgb")
+        self.image_dir = os.path.join("/Users/taylor/Desktop/Grade 12/G - ASR/Unet/2D-Hand-Pose-Estimation-RGB", config["data_dir"], "evaluation/rgb")
         self.image_names = np.sort(os.listdir(self.image_dir))
 
-        fn_K_matrix = os.path.join("/Users/tony/taylor-training/2D-Hand-Pose-Estimation-RGB", config["data_dir"], "evaluation_K.json")
+        fn_K_matrix = os.path.join("/Users/taylor/Desktop/Grade 12/G - ASR/Unet/2D-Hand-Pose-Estimation-RGB", config["data_dir"], "evaluation_K.json")
         with open(fn_K_matrix, "r") as f:
             self.K_matrix = np.array(json.load(f))
 
-        fn_anno = os.path.join("/Users/tony/taylor-training/2D-Hand-Pose-Estimation-RGB", config["data_dir"], "evaluation_xyz.json")
+        fn_anno = os.path.join("/Users/taylor/Desktop/Grade 12/G - ASR/Unet/2D-Hand-Pose-Estimation-RGB", config["data_dir"], "training_xyz.json")
         with open(fn_anno, "r") as f:
             self.anno = np.array(json.load(f))
 
